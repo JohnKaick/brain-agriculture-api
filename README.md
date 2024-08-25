@@ -1,85 +1,76 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# API Brain Agriculture
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A API do projeto Brain Agriculture foi projetado em **Layered (Clean) Architecture** desenvolvido com NestJS e NodeJS. Este projeto oferece um modelo abrangente e modularizado, demonstrando uma arquitetura bem estruturada e fácil de manter para suas aplicações.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Introdução
 
-## Description
+O principal objetivo deste projeto é demonstrar como criar uma estrutura de aplicação escalável e modular utilizando o robusto conceito da Clean Architecture. Essa arquitetura promove a separação de responsabilidades e estabelece uma distinção clara entre as diferentes camadas da sua aplicação. O foco principal é isolar a regra de negócio, garantindo que ela permaneça independente de aspectos técnicos e externos, o que facilita a manutenção, a escalabilidade e a evolução da aplicação.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Visão Geral da Arquitetura
 
-## Project setup
+A aplicação segue a **Clean Architecture**, que consiste em três camadas principais:
+
+1. **Camada de Infraestrutura (infrastructure)**: A camada de infraestrutura contém as implementações das interfaces definidas nas camadas internas. Ela lida com os aspectos técnicos da sua aplicação, como acesso a bancos de dados, APIs externas e outras integrações com terceiros. Essa camada depende tanto da Camada de Aplicação quanto da Camada de Domínio.
+
+2. **Camada de Aplicação (application)**: A camada de aplicação abriga as diversas funcionalidades e casos de uso que seu módulo oferece. Ela depende da Camada de Domínio para executar a regra de negócio e as operações.
+
+3. **Camada de Domínio (domain)**: Esta camada contém a lógica de negócio central da sua aplicação, seguindo os princípios do Domain-Driven Design (DDD). Ela é independente de qualquer outra camada e inclui entidades, objetos de valor, agregados e serviços de domínio.
+
+![Architecture Diagram](Layers.png)
+
+## Regras de Dependência (Dependency direction)
+
+Para manter uma arquitetura limpa e bem estruturada, seguimos as seguintes regras de dependência:
+
+- **Camada de Domínio**: A lógica central de domínio não deve depender de nenhuma outra camada, mantendo-a desacoplada e reutilizável.
+
+- **Camada de Aplicação**: A camada de aplicação pode depender da Camada de Domínio para acessar e utilizar a lógica de domínio, a fim de atender aos casos de uso.
+
+- **Camada de Infraestrutura**: A camada de infraestrutura pode depender tanto da Camada de Aplicação quanto da Camada de Domínio, permitindo a implementação das interfaces definidas nas camadas internas.
+
+## Comandos para executar no projeto
+
+### Instalação do pacote NPM
 
 ```bash
 $ npm install
 ```
 
-## Compile and run the project
+### executar o projeto
 
 ```bash
-# development
+# desenvolvimento
 $ npm run start
 
-# watch mode
+# modo de observação
 $ npm run start:dev
 
-# production mode
+# modo de produção
 $ npm run start:prod
 ```
 
-## Run tests
+### Executar testes
 
 ```bash
-# unit tests
+# testes unitários
 $ npm run test
 
-# e2e tests
+# testes end to end
 $ npm run test:e2e
 
-# test coverage
+# cobertura de testes
 $ npm run test:cov
 ```
 
-## Resources
+### Migrações de banco de dados
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+# Criando um arquivo de migração
+$ npm run migration:generate -- src/database/migrations/{{nome-versao}}
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+# Executando a migração
+$ npm run migration:run
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+# Revertendo a migração
+$ npm run migration:revert
+```
