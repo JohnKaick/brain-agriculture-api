@@ -8,15 +8,10 @@ import {
   IsIn,
 } from 'class-validator';
 
-export class CreateFarmerDto {
+export class FarmersDto {
   @IsString()
   @IsNotEmpty()
   document: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsIn(['CPF', 'CNPJ'])
-  documentType: string;
 
   @IsString()
   @IsNotEmpty()

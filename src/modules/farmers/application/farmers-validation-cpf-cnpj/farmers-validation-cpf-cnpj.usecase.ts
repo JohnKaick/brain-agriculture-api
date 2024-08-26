@@ -18,7 +18,7 @@ export class FarmersValidationCpfCnpjUseCase {
   }
 
   determineDocumentType(document: string): 'CPF' | 'CNPJ' {
-    const cleanedDocument = document.replace(/\D/g, ''); // Remove caracteres não numéricos
+    const cleanedDocument = document.replace(/\D/g, '');
     if (cleanedDocument.length === 11) {
       return 'CPF';
     } else if (cleanedDocument.length === 14) {

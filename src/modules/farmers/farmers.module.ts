@@ -8,14 +8,16 @@ import { DeleteFarmersUseCase } from './application/delete-farmers/delete-farmer
 import { FarmersValidationCpfCnpjUseCase } from './application/farmers-validation-cpf-cnpj/farmers-validation-cpf-cnpj.usecase';
 import { GetDashboardDataUseCase } from './application/get-dashboard-data/get-dashboard-data.usecase';
 import { UpdateFarmersUseCase } from './application/update-farmers/update-farmers.usecase';
+import { GetFarmersUseCase } from './application/get-farmers/get-farmers.usecase';
 
 @Module({
   imports: [TypeOrmModule.forFeature([FarmersEntity])],
   controllers: [FarmersController],
   providers: [
     FarmersRepository,
+    FarmersValidationCpfCnpjUseCase,
     {
-      provide: 'CreateFarmerUseCase',
+      provide: CreateFarmersUseCase,
       useFactory: (farmersRepository: FarmersRepository) =>
         new CreateFarmersUseCase(
           farmersRepository,
@@ -24,7 +26,7 @@ import { UpdateFarmersUseCase } from './application/update-farmers/update-farmer
       inject: [FarmersRepository],
     },
     {
-      provide: 'UpdateFarmerUseCase',
+      provide: UpdateFarmersUseCase,
       useFactory: (farmersRepository: FarmersRepository) =>
         new UpdateFarmersUseCase(
           farmersRepository,
@@ -33,28 +35,23 @@ import { UpdateFarmersUseCase } from './application/update-farmers/update-farmer
       inject: [FarmersRepository],
     },
     {
-      provide: 'DeleteFarmerUseCase',
+      provide: DeleteFarmersUseCase,
       useFactory: (farmersRepository: FarmersRepository) =>
         new DeleteFarmersUseCase(farmersRepository),
       inject: [FarmersRepository],
     },
     {
-      provide: 'GetDashboardDataUseCase',
+      provide: GetFarmersUseCase,
+      useFactory: (farmersRepository: FarmersRepository) =>
+        new GetFarmersUseCase(farmersRepository),
+      inject: [FarmersRepository],
+    },
+    {
+      provide: GetDashboardDataUseCase,
       useFactory: (farmersRepository: FarmersRepository) =>
         new GetDashboardDataUseCase(farmersRepository),
       inject: [FarmersRepository],
     },
-    {
-      provide: 'FarmersValidationCpfCnpjUseCase',
-      useFactory: () => new FarmersValidationCpfCnpjUseCase(),
-    },
-  ],
-  exports: [
-    'CreateFarmerUseCase',
-    'UpdateFarmerUseCase',
-    'DeleteFarmerUseCase',
-    'GetDashboardDataUseCase',
-    'FarmersValidationCpfCnpjUseCase',
   ],
 })
 export class FarmersModule {}

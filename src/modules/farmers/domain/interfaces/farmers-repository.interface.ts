@@ -2,11 +2,11 @@ import { FarmersDto } from '../dtos/farmers.dto';
 import { FarmersEntity } from '../entities/farmers.entity';
 
 export interface FarmersRepositoryInterface {
-  create(dto: FarmersDto): Promise<void>;
-  update(id: string, dto: FarmersDto): Promise<void>;
+  create(dto: Record<string, any>): Promise<void>;
+  update(id: string, dto: Record<string, any>): Promise<void>;
   delete(id: string): Promise<void>;
-  findById(id: string): Promise<FarmersEntity | undefined>;
-  findAll(): Promise<FarmersEntity[]>;
+  findById(id: string): Promise<FarmersDto>;
+  findAll(): Promise<FarmersDto[]>;
   getFarmersCount(): Promise<number>;
   getTotalArea(): Promise<number>;
   getFarmersByState(): Promise<{ state: string; count: number }[]>;

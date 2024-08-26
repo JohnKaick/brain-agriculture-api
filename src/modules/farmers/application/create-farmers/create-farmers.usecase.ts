@@ -10,21 +10,21 @@ export class CreateFarmersUseCase {
     private readonly farmerValidationUseCase: FarmersValidationCpfCnpjUseCase,
   ) {}
 
-  async execute(dto: FarmersDto): Promise<void> {
+  async execute(data: FarmersDto): Promise<void> {
     const documentType = this.farmerValidationUseCase.determineDocumentType(
-      dto.document,
+      data.document,
     );
 
-    this.farmerValidationUseCase.validateDocument(dto.document, documentType);
+    this.farmerValidationUseCase.validateDocument(data.document, documentType);
 
-    if (dto.arableArea + dto.vegetationArea > dto.totalArea) {
+    if (data.arableArea + data.vegetationArea > data.totalArea) {
       throw new BadRequestException(
         'Arable area and vegetation area cannot exceed total area.',
       );
     }
 
     await this.farmersRepository.create({
-      ...dto,
+      ...data,
       documentType,
     });
   }
