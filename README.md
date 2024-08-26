@@ -4,17 +4,17 @@ A API do projeto Brain Agriculture foi projetado em **Layered (Clean) Architectu
 
 ## Introdução
 
-O principal objetivo deste projeto é demonstrar como criar uma estrutura de aplicação escalável e modular utilizando o robusto conceito da Clean Architecture. Essa arquitetura promove a separação de responsabilidades e estabelece uma distinção clara entre as diferentes camadas da sua aplicação. O foco principal é isolar a regra de negócio, garantindo que ela permaneça independente de aspectos técnicos e externos, o que facilita a manutenção, a escalabilidade e a evolução da aplicação.
+O principal objetivo deste projeto é demonstrar como criar uma estrutura de aplicação escalável e modular utilizando o robusto conceito da Clean Architecture e SOLID. Essa arquitetura promove a separação de responsabilidades e estabelece uma distinção clara entre as diferentes camadas da sua aplicação. O foco principal é isolar a regra de negócio, garantindo que ela permaneça independente de aspectos técnicos e externos, o que facilita a manutenção, a escalabilidade e a evolução da aplicação.
 
 ## Visão Geral da Arquitetura
 
 A aplicação segue a **Clean Architecture**, que consiste em três camadas principais:
 
-1. **Camada de Infraestrutura (infrastructure)**: A camada de infraestrutura contém as implementações das interfaces definidas nas camadas internas. Ela lida com os aspectos técnicos da sua aplicação, como acesso a bancos de dados, APIs externas e outras integrações com terceiros. Essa camada depende tanto da Camada de Aplicação quanto da Camada de Domínio.
+1. **Camada de Infraestrutura (infrastructure)**: Responsável por gerenciar todas as entradas e saídas de dados da aplicação. Isso inclui a comunicação com bancos de dados, APIs RESTful, sistemas de mensageria, e outras integrações com serviços externos. Garantindo que a regra de negócio permaneça isolada na camada de aplicação, enquando lida com os aspectos técnicos e operacionais da aplicação.
 
-2. **Camada de Aplicação (application)**: A camada de aplicação abriga as diversas funcionalidades e casos de uso que seu módulo oferece. Ela depende da Camada de Domínio para executar a regra de negócio e as operações.
+2. **Camada de Aplicação (application)**: Focada em isolar a regra de negócio das demais camadas, garantindo que mudanças em bibliotecas, frameworks ou outras dependências técnicas não afetem a lógica central da aplicação. Para alcançar essa separação, a camada de aplicação se comunica com a camada de infraestrutura exclusivamente por meio de interfaces, seguindo os princípios de SOLID. Essa abordagem assegura que a aplicação permaneça modular, fácil de manter e resiliente a mudanças tecnológicas.
 
-3. **Camada de Domínio (domain)**: Esta camada contém a lógica de negócio central da sua aplicação, seguindo os princípios do Domain-Driven Design (DDD). Ela é independente de qualquer outra camada e inclui entidades, objetos de valor, agregados e serviços de domínio.
+3. **Camada de Domínio (domain)**: Esta camada é focada em toda a estrutura de dados da aplicação, como DTOs, entidades, interfaces e outros elementos essenciais, seguindo os princípios do Domain-Driven Design (DDD). Ele é independente de qualquer outra camada e inclui entidades, objetos de valor, agregados e serviços de domínio. Essa independência garante que a lógica de negócio permaneça intacta e desacoplada de implementações técnicas.
 
 ![Architecture Diagram](Layers.png)
 
@@ -22,11 +22,11 @@ A aplicação segue a **Clean Architecture**, que consiste em três camadas prin
 
 Para manter uma arquitetura limpa e bem estruturada, seguimos as seguintes regras de dependência:
 
-- **Camada de Domínio**: A lógica central de domínio não deve depender de nenhuma outra camada, mantendo-a desacoplada e reutilizável.
+- **Camada de Infraestrutura**: A camada de infraestrutura pode depender tanto da Camada de Aplicação quanto da Camada de Domínio, permitindo a implementação das interfaces definidas nas camadas internas.
 
 - **Camada de Aplicação**: A camada de aplicação pode depender da Camada de Domínio para acessar e utilizar a lógica de domínio, a fim de atender aos casos de uso.
 
-- **Camada de Infraestrutura**: A camada de infraestrutura pode depender tanto da Camada de Aplicação quanto da Camada de Domínio, permitindo a implementação das interfaces definidas nas camadas internas.
+- **Camada de Domínio**: A lógica central de domínio não deve depender de nenhuma outra camada, mantendo-a desacoplada e reutilizável.
 
 ## Comandos para executar no projeto
 
@@ -36,7 +36,7 @@ Para manter uma arquitetura limpa e bem estruturada, seguimos as seguintes regra
 $ npm install
 ```
 
-### executar o projeto
+### Executar o projeto
 
 ```bash
 # desenvolvimento
