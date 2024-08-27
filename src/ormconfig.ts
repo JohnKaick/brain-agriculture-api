@@ -9,12 +9,15 @@ import {
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: AGRICULTURE_DB_HOST || 'localhost',
-  port: AGRICULTURE_DB_PORT || 5432,
-  username: AGRICULTURE_DB_USER || 'jkapp',
-  password: AGRICULTURE_DB_PASSWORD || '87654321',
-  database: AGRICULTURE_DB_DATABASE || 'jkapp',
+  host: AGRICULTURE_DB_HOST,
+  port: AGRICULTURE_DB_PORT,
+  username: AGRICULTURE_DB_USER,
+  password: AGRICULTURE_DB_PASSWORD,
+  database: AGRICULTURE_DB_DATABASE,
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/database/migrations/*{.ts,.js}'],
-  migrationsRun: true,
+  migrationsRun: false,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });

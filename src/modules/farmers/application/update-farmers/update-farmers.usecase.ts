@@ -19,7 +19,7 @@ export class UpdateFarmersUseCase {
 
     if (dto.arableArea + dto.vegetationArea > dto.totalArea) {
       throw new BadRequestException(
-        'Arable area and vegetation area cannot exceed total area.',
+        'Soma das áreas (Cultivável e Vegetação) não pode exceder a Área Total',
       );
     }
 

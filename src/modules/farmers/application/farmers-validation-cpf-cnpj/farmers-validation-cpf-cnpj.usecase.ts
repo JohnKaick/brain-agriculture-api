@@ -6,14 +6,14 @@ export class FarmersValidationCpfCnpjUseCase {
   validateDocument(document: string, documentType: 'CPF' | 'CNPJ'): void {
     if (documentType === 'CPF') {
       if (!cpf.isValid(document)) {
-        throw new BadRequestException('Invalid CPF number.');
+        throw new BadRequestException('Número de CPF inválido');
       }
     } else if (documentType === 'CNPJ') {
       if (!cnpj.isValid(document)) {
-        throw new BadRequestException('Invalid CNPJ number.');
+        throw new BadRequestException('Número de CNPJ inválido');
       }
     } else {
-      throw new BadRequestException('Invalid document type.');
+      throw new BadRequestException('Tipo de documento inválido');
     }
   }
 
@@ -24,7 +24,7 @@ export class FarmersValidationCpfCnpjUseCase {
     } else if (cleanedDocument.length === 14) {
       return 'CNPJ';
     } else {
-      throw new BadRequestException('Invalid document length.');
+      throw new BadRequestException('Tamanho de documento inválido');
     }
   }
 }

@@ -1,5 +1,4 @@
 import { FarmersDto } from '../dtos/farmers.dto';
-import { FarmersEntity } from '../entities/farmers.entity';
 
 export interface FarmersRepositoryInterface {
   create(dto: Record<string, any>): Promise<void>;
