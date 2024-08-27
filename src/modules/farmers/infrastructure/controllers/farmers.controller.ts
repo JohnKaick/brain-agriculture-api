@@ -13,7 +13,9 @@ import { DeleteFarmersUseCase } from '../../application/delete-farmers/delete-fa
 import { UpdateFarmersUseCase } from '../../application/update-farmers/update-farmers.usecase';
 import { GetDashboardDataUseCase } from '../../application/get-dashboard-data/get-dashboard-data.usecase';
 import { GetFarmersUseCase } from '../../application/get-farmers/get-farmers.usecase';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Agricultores')
 @Controller('farmers')
 export class FarmersController {
   constructor(

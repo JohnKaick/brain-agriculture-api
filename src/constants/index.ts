@@ -1,4 +1,5 @@
 export const PORT = process.env.PORT || 3000;
+export const SWAGGER_PREFIX = process.env.SWAGGER_PREFIX || '/docs';
 
 export const AGRICULTURE_DB_DATABASE = process.env.AGRICULTURE_DB_DATABASE;
 export const AGRICULTURE_DB_HOST = process.env.AGRICULTURE_DB_HOST;

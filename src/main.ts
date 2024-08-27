@@ -5,6 +5,7 @@ import { AppModule } from './app.module';
 import { AppDataSource } from './ormconfig';
 import { PORT } from './constants';
 import { ValidationPipe } from '@nestjs/common';
+import { SwaggerService } from './swagger.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,6 +19,8 @@ async function bootstrap() {
   app.enableCors();
 
   app.useGlobalPipes(new ValidationPipe());
+
+  await SwaggerService.generate(app);
 
   await app.listen(PORT);
 }
