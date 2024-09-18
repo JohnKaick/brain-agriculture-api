@@ -1,12 +1,12 @@
 # API Brain Agriculture
 
-A API do projeto Brain Agriculture foi projetado em **Layered (Clean) Architecture** desenvolvido com NestJS e NodeJS. Este projeto oferece um modelo abrangente e modularizado, demonstrando uma arquitetura bem estruturada e fácil de manter para suas aplicações.
+A API do projeto Brain Agriculture foi projetado em **Clean Architecture** desenvolvido com NestJS e NodeJS. Este projeto oferece um modelo abrangente e modularizado, demonstrando uma arquitetura bem estruturada e fácil de manter para suas aplicações.
 
 ## Introdução
 
 O principal objetivo deste projeto é demonstrar como criar uma estrutura de aplicação escalável e modular utilizando o robusto conceito da Clean Architecture e SOLID. Essa arquitetura promove a separação de responsabilidades e estabelece uma distinção clara entre as diferentes camadas da sua aplicação. O foco principal é isolar a regra de negócio, garantindo que ela permaneça independente de aspectos técnicos e externos, o que facilita a manutenção, a escalabilidade e a evolução da aplicação.
 
-## Visão Geral da Arquitetura
+## Visão Geral da Clean Arquitetura
 
 A aplicação segue a **Clean Architecture**, que consiste em três camadas principais:
 
